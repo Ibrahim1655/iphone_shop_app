@@ -4,7 +4,7 @@ import img17ProGris from "../assets/iphone17pro_gris.jpg";
 import img17ProOrange from "../assets/iphone17pro_orange.jpeg";
 import img17ProMax from "../assets/iphone17promax_bleu.jpg";
 
-const iphoneData = [
+export const iphoneData = [
   {
     id: 1,
     modele: "iPhone 16 Vert",
@@ -51,5 +51,3 @@ const iphoneData = [
     etat: "Neuf",
   },
 ];
-
-export default iphoneData;
