@@ -1,7 +1,22 @@
 import reactLogo from "../assets/react.svg";
 import { ShoppingBag } from "lucide-react";
+import type { PanierItem } from "../types";
 
-export function Header({ panier, isOpen, setIsOpen, recherche, setRecherche }) {
+interface HeaderProps {
+  panier: PanierItem[];
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+  recherche: string;
+  setRecherche: (value: string) => void;
+}
+
+export function Header({
+  panier,
+  isOpen,
+  setIsOpen,
+  recherche,
+  setRecherche,
+}: HeaderProps) {
   return (
     <header className="p-5 flex items-center justify-between bg-blue-200 rounded-2xl gap-3 shadow-lg sticky top-0 z-50">
       {/* Partie gauche : Titre et Logo */}
@@ -42,8 +57,7 @@ export function Header({ panier, isOpen, setIsOpen, recherche, setRecherche }) {
         </label>
       </div>
 
-      {/*Partie droite : Panier */}
-
+      {/* Partie droite : Panier */}
       <div className="indicator">
         <span className="indicator-item badge badge-secondary">
           {panier.length}

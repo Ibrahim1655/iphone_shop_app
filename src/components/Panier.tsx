@@ -1,4 +1,12 @@
-export function Panier({ panier, isOpen, setIsOpen }) {
+import type { PanierItem } from "../types";
+
+interface PanierProps {
+  panier: PanierItem[];
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+}
+
+export function Panier({ panier, isOpen, setIsOpen }: PanierProps) {
   if (!isOpen) return null;
 
   return (

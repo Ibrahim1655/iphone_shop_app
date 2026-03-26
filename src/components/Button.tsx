@@ -1,24 +1,32 @@
+import type { PanierItem } from "../types";
+
+interface ButtonProps {
+  modele: string;
+  prix: number;
+  updatePanier: React.Dispatch<React.SetStateAction<PanierItem[]>>;
+  panier: PanierItem[];
+  setFlashMessage: (message: string | null) => void;
+}
+
 export function Button({
   modele,
   updatePanier,
   panier,
   prix,
   setFlashMessage,
-}) {
-  const addPanier = (modele, prix) => {
+}: ButtonProps) {
+  const addPanier = (modele: string, prix: number) => {
     updatePanier([...panier, { modele, prix, quantite: 1 }]);
     console.log(panier);
     setFlashMessage(`L'${modele} a été ajouté au panier`);
-    {
-      /*Feedback de l'ajout au panier pendant 3 secondes*/
-    }
     setTimeout(() => {
       setFlashMessage(null);
     }, 3000);
   };
+
   return (
     <button
-      className="btn btn-primary "
+      className="btn btn-primary"
       onClick={() => addPanier(modele, prix)}
     >
       Acheter

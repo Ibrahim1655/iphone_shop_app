@@ -1,20 +1,20 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Iphones } from "./components/Iphones";
 import { Panier } from "./components/Panier";
 import { iphoneData } from "./datas/listeIphones";
+import type { PanierItem } from "./types";
+
 function App() {
-  const [panier, updatePanier] = useState([]);
+  const [panier, updatePanier] = useState<PanierItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [flashMessage, setFlashmessage] = useState(null);
+  const [flashMessage, setFlashmessage] = useState<string | null>(null);
   const [recherche, setRecherche] = useState("");
 
-  const iphoneFiltre = iphoneData.filter((iphone) => {
-    return iphone.modele.toLowerCase().includes(recherche.toLocaleLowerCase());
-  });
+  const iphoneFiltre = iphoneData.filter((iphone) =>
+    iphone.modele.toLowerCase().includes(recherche.toLowerCase())
+  );
 
   return (
     <main className="bg-base-200 p-7">
@@ -31,8 +31,6 @@ function App() {
             <Iphones
               iphone={iphoneFiltre}
               updatePanier={updatePanier}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
               panier={panier}
               setFlashMessage={setFlashmessage}
             />
@@ -40,10 +38,8 @@ function App() {
           <div className="">
             <Panier
               panier={panier}
-              updatePanier={updatePanier}
               isOpen={isOpen}
               setIsOpen={setIsOpen}
-              iphone={iphoneData}
             />
           </div>
         </section>
